@@ -6,7 +6,7 @@ import chai from 'chai';
 const { expect } = chai;
 
 describe('mongoose package', () => {
-  test(`discriminators`, async () => {
+  test(`discriminators (https://github.com/Automattic/mongoose/issues/13906)`, async () => {
     const options = { discriminatorKey: 'type' };
 
     interface IEvent  {
@@ -44,7 +44,7 @@ describe('mongoose package', () => {
       $or: [
         { type: 'clickedImageEvent' }
       ]
-    }
+    };
 
     const result = await Event.find(query).exec();
     expect(result.length).to.equal(0);
